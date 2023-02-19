@@ -26,9 +26,9 @@ function nick_prefix.update_ntag(name)
 		end
 		local prefix,color = nick_prefix.get(name)
 		if (prefix and color) then
-			player:set_nametag_attributes({color = {a=255}, text = core.colorize(color,prefix)..name})
+			player:set_nametag_attributes({color = {a=255,r=255,g=255,b=255}, text = core.colorize(color,prefix)..name})
 		else
-			player:set_nametag_attributes({color = {a=255}, text = name})
+			player:set_nametag_attributes({color = {a=255,r=255,g=255,b=255}, text = name})
 		end
 	end
 end
