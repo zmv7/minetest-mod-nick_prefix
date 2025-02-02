@@ -23,7 +23,7 @@ function nick_prefix.get(name)
 	if not data then
 		if not s:get("[migrated]") then
 			migrate()
-			return nick.prefix.get(name)
+			return nick_prefix.get(name)
 		end
 		return {}
 	end
@@ -168,7 +168,7 @@ core.register_chatcommand("delprefix", {
 	data.prefix = nil
 	data.color = nil
 	if not next(data) then
-		nick.prefix.del(param)
+		nick_prefix.del(param)
 	else
 		nick_prefix.set(param,data)
 	end
@@ -186,7 +186,7 @@ core.register_chatcommand("delpronouns", {
 	local data = nick_prefix.get(param)
 	data.pronouns = nil
 	if not next(data) then
-		nick.prefix.del(param)
+		nick_prefix.del(param)
 	else
 		nick_prefix.set(param,data)
 	end
