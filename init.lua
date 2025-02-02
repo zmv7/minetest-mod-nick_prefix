@@ -2,7 +2,7 @@ nick_prefix = {}
 local hidden_nicks = {}
 local s = core.get_mod_storage()
 
-local function migrate()
+function nick_prefix.migrate()
 	for name,str in pairs(s:to_table().fields) do
 		local prefix, color = str:match("(%S+)%s(%S+)")
 		if prefix and color then
@@ -11,6 +11,7 @@ local function migrate()
 				color = color
 			}
 			s:set_string(name, core.serialize(data))
+			core.log("action", "Migrated nick_prefix data for "..name)
 		end
 	end
 	s:set_string("[migrated]", "[yes]")
@@ -22,7 +23,7 @@ function nick_prefix.get(name)
 	local data = core.deserialize(sdata)
 	if not data then
 		if not s:get("[migrated]") then
-			migrate()
+			nick_prefix.migrate()
 			return nick_prefix.get(name)
 		end
 		return {}
