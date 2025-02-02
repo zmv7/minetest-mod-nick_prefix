@@ -4,7 +4,7 @@ local s = core.get_mod_storage()
 
 local function migrate()
 	for name,str in pairs(s:to_table().fields) do
-		local prefix, color = name:match("(%S+)%s(%S+)")
+		local prefix, color = str:match("(%S+)%s(%S+)")
 		if prefix and color then
 			local data = {
 				prefix = prefix:gsub("[%[%]]",""),
